@@ -6,8 +6,10 @@ from PyQt5.QtWidgets import QApplication
 from gui import Board
 
 parser = argparse.ArgumentParser(description='五子棋')
-parser.add_argument('--n', type=int, default=19, metavar='N', help='棋盘的行/列数（默认：19）')
-parser.add_argument('--width', type=int, default=800, metavar='N', help='棋盘的宽度（默认：800）')
+parser.add_argument('--n', type=int, default=19,
+                    metavar='N', help='棋盘的行/列数（默认：19）')
+parser.add_argument('--width', type=int, default=800,
+                    metavar='N', help='棋盘的宽度（默认：800）')
 parser.add_argument('--margin', type=int, default=80, metavar='N',
                     help='棋盘的下边距，棋盘的高度等于棋盘的宽度+下边距（默认：80）')
 args = parser.parse_args()

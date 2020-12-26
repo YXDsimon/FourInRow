@@ -40,11 +40,6 @@ def search(table, sequence):
     max_ = -inf
     max_i, max_j = 0, 0
     space = search_space(table, sequence)
-    # for i in range(5):
-    #     for j in range(5):
-    #         print(table[i][j], end=' ')
-    #     print()
-    # print(space)
     for (i, j) in space:
         if table[i][j] == VACANT:
             table[i][j] = WHITE
@@ -74,13 +69,6 @@ def search(table, sequence):
 
 
 def max_search(table, alpha, beta, depth, space):
-    # for i in range(5):
-    #     print('    ' * (3 - depth), end='')
-    #     for j in range(5):
-    #         print(table[i][j], end=' ')
-    #     print()
-    # print('    ' * (3 - depth), end='')
-    # print(space)
     if depth == 0:
         return evaluate(table)
     n = len(table)
@@ -119,14 +107,6 @@ def max_search(table, alpha, beta, depth, space):
 
 
 def min_search(table, alpha, beta, depth, space):
-    # for i in range(5):
-    #     print('    ' * (3 - depth), end='')
-    #     for j in range(5):
-    #         print(table[i][j], end=' ')
-    #     print()
-    # print()
-    # print('    ' * (3 - depth), end='')
-    # print(space)
     if depth == 0:
         return evaluate(table)
     n = len(table)
@@ -214,8 +194,8 @@ def judge(table):
     """
     n = len(table)
 
-    pattern1 = str(BLACK) + '{5}'
-    pattern2 = str(WHITE) + '{5}'
+    pattern1 = str(BLACK) + '{4}'
+    pattern2 = str(WHITE) + '{4}'
 
     # 检查所有横行
     for i in range(n):

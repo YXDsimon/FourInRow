@@ -52,7 +52,8 @@ class Board(QWidget):
 
         self.setWindowTitle("五子棋")
         self.setFixedSize(self.size * self.n, self.size * self.n + self.margin)
-        self.pix = QPixmap(self.size * self.n, self.size * self.n + self.margin)
+        self.pix = QPixmap(self.size * self.n, self.size *
+                           self.n + self.margin)
         self.point = None
 
         self.newgame_button = Button(self)
@@ -64,14 +65,17 @@ class Board(QWidget):
         self.setting_button = Button(self)
         self.setting_button.setText("设置")
         self.setting_button.setStyleSheet("color:white; background-color:blue")
-        self.setting_button.move(self.size * self.n * 2 // 4, self.size * self.n)
+        self.setting_button.move(
+            self.size * self.n * 2 // 4, self.size * self.n)
         self.setting_button.clicked.connect(self.setting)
         self.setting_window = Setting()
 
         self.withdraw_button = Button(self)
         self.withdraw_button.setText("悔棋")
-        self.withdraw_button.setStyleSheet("color:white; background-color:gray")
-        self.withdraw_button.move(self.size * self.n * 3 // 4, self.size * self.n)
+        self.withdraw_button.setStyleSheet(
+            "color:white; background-color:gray")
+        self.withdraw_button.move(
+            self.size * self.n * 3 // 4, self.size * self.n)
         self.withdraw_button.clicked.connect(self.withdraw)
 
     def paintEvent(self, event):
@@ -81,7 +85,8 @@ class Board(QWidget):
         if not self.start:
             p.setPen(BOARD_COLOR)
             p.setBrush(QBrush(BOARD_COLOR))
-            p.drawRect(0, 0, self.size * self.n, self.size * self.n + self.margin)
+            p.drawRect(0, 0, self.size * self.n,
+                       self.size * self.n + self.margin)
             p.setPen(Qt.black)
             for i in range(self.n):
                 p.drawLine(self.size * i + self.size // 2, self.size // 2,
@@ -120,7 +125,8 @@ class Board(QWidget):
                 self.count += 1
                 if not self.start:
                     self.start = True
-                    self.withdraw_button.setStyleSheet("color:white; background-color:blue")
+                    self.withdraw_button.setStyleSheet(
+                        "color:white; background-color:blue")
                 self.sequence.append((i, j))
                 self.table[i][j] = BLACK if self.black else WHITE
                 p.drawEllipse(j * self.size + (self.size - self.dia) // 2, i * self.size + (self.size - self.dia) // 2,
@@ -151,7 +157,8 @@ class Board(QWidget):
             p.setBrush(QBrush(BOARD_COLOR))
             for (i, j) in self.withdraw_point:
                 p.setPen(BOARD_COLOR)
-                p.drawEllipse(j * self.size, i * self.size, self.size, self.size)
+                p.drawEllipse(j * self.size, i * self.size,
+                              self.size, self.size)
                 p.setPen(Qt.black)
                 p.drawLine(j * self.size, i * self.size + self.size // 2,
                            (j + 1) * self.size, i * self.size + self.size // 2)
@@ -172,7 +179,8 @@ class Board(QWidget):
             p.setFont(QFont("Microsoft YaHei", 20))
             p.drawText(QRectF(self.size * self.n // 10 - self.dia * 3 // 4, self.size * self.n,
                               self.dia * 3 // 2, self.dia * 3 // 2), Qt.AlignCenter, "胜")
-            self.withdraw_button.setStyleSheet("color:white; background-color:gray")
+            self.withdraw_button.setStyleSheet(
+                "color:white; background-color:gray")
 
         painter.drawPixmap(0, 0, self.pix)
 
@@ -196,7 +204,8 @@ class Board(QWidget):
         self.sequence = []
         self.table = [[VACANT for j in range(self.n)] for i in range(self.n)]
         self.withdraw_point = None
-        self.withdraw_button.setStyleSheet("color:white; background-color:gray")
+        self.withdraw_button.setStyleSheet(
+            "color:white; background-color:gray")
 
     def setting(self):
         self.setting_window.show()
@@ -211,4 +220,5 @@ class Board(QWidget):
             self.count -= 2
             if not self.sequence:
                 self.start = False
-                self.withdraw_button.setStyleSheet("color:white; background-color:gray")
+                self.withdraw_button.setStyleSheet(
+                    "color:white; background-color:gray")
