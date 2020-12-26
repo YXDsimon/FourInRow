@@ -21,13 +21,6 @@ class Button(QToolButton):
             self.parent().mousePressEvent(event)
 
 
-class Setting(QWidget):
-    def __init__(self, parent=None):
-        super(Setting, self).__init__(parent)
-        self.setWindowTitle("设置")
-        self.setWindowModality(Qt.ApplicationModal)
-
-
 class Board(QWidget):
     def __init__(self, n, width, margin, parent=None):
         super(Board, self).__init__(parent)
@@ -61,14 +54,6 @@ class Board(QWidget):
         self.newgame_button.setStyleSheet("color:white; background-color:blue")
         self.newgame_button.move(self.size * self.n // 4, self.size * self.n)
         self.newgame_button.clicked.connect(self.newgame)
-
-        self.setting_button = Button(self)
-        self.setting_button.setText("设置")
-        self.setting_button.setStyleSheet("color:white; background-color:blue")
-        self.setting_button.move(
-            self.size * self.n * 2 // 4, self.size * self.n)
-        self.setting_button.clicked.connect(self.setting)
-        self.setting_window = Setting()
 
         self.withdraw_button = Button(self)
         self.withdraw_button.setText("悔棋")
@@ -206,9 +191,6 @@ class Board(QWidget):
         self.withdraw_point = None
         self.withdraw_button.setStyleSheet(
             "color:white; background-color:gray")
-
-    def setting(self):
-        self.setting_window.show()
 
     def withdraw(self):
         if self.start and not self.finish:
